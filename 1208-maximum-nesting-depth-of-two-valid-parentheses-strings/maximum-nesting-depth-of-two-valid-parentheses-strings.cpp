@@ -1,22 +1,6 @@
 class Solution {
 public:
 
-    int depth(string& s){
-        int n=s.size();
-        int count=0;
-        int ans=0;
-        for(auto i:s){
-            if(i=='('){
-                count++;
-            }
-            else{
-                count--;
-            }
-            ans=max(count,ans);
-        }
-        return ans;
-    }
-
     void helper(string s,vector<int>& ans,int start){
         int n=s.size();
         int count=0;
