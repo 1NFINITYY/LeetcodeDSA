@@ -33,8 +33,6 @@ public:
 
         string ans=a+b.substr(v);
 
-        cout<<v<<endl<<ans<<endl;
-
         return ans;
     }
 
