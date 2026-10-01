@@ -6,13 +6,12 @@ public:
         int m=b.length();
 
         int run = min(n,m);
+        int maxi=max(n,m);
         int ans=-1;
 
-        for(int i=0;i<n&&n-i>=m;i++){
-            if(a.substr(i,m)==b) return -2;
-        }
-        for(int i=0;i<m&&m-i>=n;i++){
-            if(b.substr(i,n)==a) return -3;
+        for(int i=0;i<maxi;i++){
+            if(n-i>=m&&a.substr(i,m)==b) return -2;
+            if(m-i>=n&&b.substr(i,n)==a) return -3;
         }
 
         for(int i=0;i<run;i++){
