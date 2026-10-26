@@ -9,12 +9,10 @@ public:
         grid[i][j]=0;
 
         ans+=islandvalue(grid,i+1,j,n,m,k);
-        ans=ans%k;
         ans+=islandvalue(grid,i,j+1,n,m,k);
-        ans=ans%k;
         ans+=islandvalue(grid,i-1,j,n,m,k);
-        ans=ans%k;
         ans+=islandvalue(grid,i,j-1,n,m,k);
+
         ans=ans%k;
 
         return ans;
