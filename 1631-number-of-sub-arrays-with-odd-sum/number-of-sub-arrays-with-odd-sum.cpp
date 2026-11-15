@@ -1,51 +1,29 @@
 class Solution {
 public:
-    int mod=1e9+7;
-    int n;
-    int solve(vector<int>& arr,vector<int>& dp,int i){
-        if(i<0) return 0;
-        if(dp[i]!=-1){
-            return dp[i];
-        }
-        if(arr[i]%2==0){
-            int ans=solve(arr,dp,i-1)%mod;
-            dp[i]=ans;
-            return ans;
-        }
-        int countofodds=0;
-        int ans=1;
-
-        for(int x=i-1;x>=0;x--){
-            if(countofodds==0&&arr[x]%2==0){
-                ans++;
-            }
-            if(arr[x]%2==1){
-                countofodds++;
-            }
-            if(arr[x]%2==1&&countofodds%2==0&&countofodds>0){
-                ans=(ans+solve(arr,dp,x))%mod;
-                break;
-            }
-        }
-
-        dp[i]=ans;
-        return ans;
-    }
-
-    int numOfSubarrays(vector<int>& arr) {
-        n=arr.size();
+    int numOfSubarrays(vector<int>& nums) {
+        int n=nums.size();
         int ans=0;
+        int noofeven=0;
+        int mod=1e9+7;
 
-        vector<int> dp(n,-1);
-        int temp;
+        int  prev=0;
+        int pprev=0;
+        int temp=0;
 
-        for(int i=n-1;i>=0;i--){
-            if(dp[i]==-1){
-                temp=solve(arr,dp,i);
+        for(int i=0;i<n;i++){
+            if(nums[i]%2==0){
+                noofeven++;
+                ans=(ans+prev)%mod;
             }
-            cout<<dp[i]<<" ";
-            ans=(ans+dp[i])%mod;
+            else{
+                temp=ans;
+                ans=(ans+pprev+1+noofeven)%mod;
+                noofeven=0;
+                pprev=prev;
+                prev = (ans - temp + mod) % mod;
+            }
         }
+
 
         return ans;
     }
